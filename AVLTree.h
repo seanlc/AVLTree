@@ -51,7 +51,15 @@ class AVLTree
 	insertNum(root, newNode);
 	++numNodes;
     }
-    void deleteItem(int num);
+    void deleteItem(int num)
+    {
+	tNode * tmp = nullptr;
+	tNode * node = findNode(root,num);
+	tNode * par = findParentOfNode(root,tmp,num);
+	
+	if(node->right == nullptr && node->left == nullptr)
+	    deleteNoChildNode(node, par);
+    }
     void print()
     {
         visualRep(root, 0);
@@ -91,6 +99,18 @@ class AVLTree
 	    insertNum(tRoot->left, newNode);
     }
     void deleteTree(tNode * tRoot);
+    void deleteNoChildNode(tNode * & node, tNode * & par)
+    {
+	if(par != nullptr)
+	{
+	    if(par->left == node)
+	        par->left = nullptr;
+	    else
+	        par->right = nullptr;
+	}
+	delete node;
+	node = nullptr;
+    }
     void visualRep(tNode * tRoot, int level)
     {
         if(tRoot != nullptr)
