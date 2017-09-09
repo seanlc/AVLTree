@@ -59,10 +59,14 @@ class AVLTree
 	
 	if(node->right == nullptr && node->left == nullptr)
 	    deleteNoChildNode(node, par);
+	else if((node->right != nullptr && node->left == nullptr) ||
+	   (node->right == nullptr && node->left != nullptr))
+	    deleteSingleChildNode(node, par);
     }
     void print()
     {
         visualRep(root, 0);
+	cout << endl << endl;
     }
   private:
     tNode * root;
@@ -108,6 +112,25 @@ class AVLTree
 	    else
 	        par->right = nullptr;
 	}
+	delete node;
+	node = nullptr;
+    }
+    void deleteSingleChildNode(tNode * & node, tNode * & par)
+    {
+	tNode * nodeChild = nullptr;
+	if(node->right != nullptr)
+	    nodeChild = node->right;
+	else
+	    nodeChild = node->left;
+	if(par != nullptr)
+	{
+	    if(par->left == node)
+		par->left = nodeChild;
+	    else
+		par->right = nodeChild;
+	}
+	else if(root == node)
+	    root = nodeChild;
 	delete node;
 	node = nullptr;
     }

@@ -40,7 +40,8 @@ void test_delete()
 {
     AVLTree myTree;
     myTree.putItem(50);
-    myTree.putItem(25);
+    myTree.putItem(75);
+/*
     myTree.putItem(75);
     myTree.putItem(85);
     myTree.putItem(65);
@@ -48,6 +49,12 @@ void test_delete()
     myTree.putItem(15);
     myTree.print();
     myTree.deleteItem(15);
+    myTree.print();
+    myTree.deleteItem(25);
+    myTree.print();
+*/
+    myTree.print();
+    myTree.deleteItem(50);
     myTree.print();
 }
 int main()
